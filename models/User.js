@@ -13,48 +13,50 @@ class User extends Model {
 //Configure the fields of the SQL Table user
 User.init(
     {
-    //Create and define the id column
+    //Creates and define the id column
         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
+            type: DataTypes.INTEGER, //Stores the data type as an integer
+            allowNull: false, //Does not allow null values
+            primaryKey: true, //sets ID as the primary key
+            autoIncrement: true //autoIncrements the ID so that whenver a new user is added, their ID is one value higher than the previous person that was added to the database
         },
+    //Creates the username column    
         username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            type: DataTypes.STRING, //Stores the data type as a string
+            allowNull: false, //Does not allow null values
+            unique: true //The username must be unique
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
+    //Creates the password column 
+        password: { 
+            type: DataTypes.STRING, //Stores the data type as a string
+            allowNull: false, //Does not allow null values
             validate: {
-                len: [4]
+                len: [4] //The password must be more than 4 characters. Validate is being used to check this
             }
         }
     },
-    {
-        hooks: {
-            async beforeCreate(newUserData) {
+    {//bcrypt hashing passwords that are created 
+        hooks: { //The await keyword is used as a prefix to the function that contains the asynchronous function, which will assign the value from the user input to the newUserData's password property
+            async beforeCreate(newUserData) {  //the password (newUserData) is then returned to the application with the hashed password 
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
-
-            async beforeUpdate(updatedUserData) {
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+            
+            async beforeUpdate(updatedUserData) { //The await keyword is used as a prefix to the function that contains the asynchronous function, which will assign the value from the user input to the updatedUserData's password property
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10); //the password (updatedUserData) is then returned to the application with the hashed password 
                 return updatedUserData;
             }
         },
         
-        sequelize,
+        sequelize, //passes in the imported sequelize connection, which is the connection to the tech_blog_db database
 
         timestamps: false,
 
         freezeTableName: true,
-        underscored: true,
-        modelName: 'user'
+        underscored: true, //use underscores as opposed to camel-casing
+        modelName: 'user' //The name of our model in the database
 
     }    
 );
 
-module.exports = User;
+module.exports = User; //exports the user model
