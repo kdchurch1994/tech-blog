@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize'); //Allows us to create the seq
 const sequelize = require('../config/connection.js'); //Imports the connection to the database through sequelize
 const bcrypt = require('bcrypt'); //Imports the use of bcrypt which allows us to hash passwords
 
-//Creat the User model
+//Creates the User model
 class User extends Model {
     //check the password each type someone logs in
     checkPassword(loginPW) {
@@ -13,7 +13,7 @@ class User extends Model {
 //Configure the fields of the SQL Table user
 User.init(
     {
-    //Creates and define the id column
+    //Creates and defines the id column
         id: {
             type: DataTypes.INTEGER, //Stores the data type as an integer
             allowNull: false, //Does not allow null values
@@ -50,11 +50,11 @@ User.init(
         
         sequelize, //passes in the imported sequelize connection, which is the connection to the tech_blog_db database
 
-        timestamps: false,
+        timestamps: false, // don't automatically create createdAt/updatedAt timestamp fields
 
-        freezeTableName: true,
+        freezeTableName: true, //doesn't allow the pluralize the name of the database table (stops the database from having multiple tables named user)
         underscored: true, //use underscores as opposed to camel-casing
-        modelName: 'user' //The name of our model in the database
+        modelName: 'user' //The name of our model (table) in the database
 
     }    
 );
