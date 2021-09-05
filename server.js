@@ -2,12 +2,15 @@ const express = require('express'); //imports express.js
 const app = express(); //sets the const app equal to express(); which will allow us to use the functionalities of express
 const sequelize = require('./config/connection'); //imports the sequelize connection configured in the config directory
 const path = require('path'); //imports the path functionality node.js
+const routes = require('./controllers');
 
 const PORT = process.env.PORT || 3001; //sets the const PORT to equal the environment variable PORT of the deployment environment (i.e. Heroku) or Port 3001 when deployed locally
 
 app.use(express.json()); //Takes incoming POST data in the form of JSON and parses it into the req.body
 
 app.use(express.urlencoded({ extended: true })); //Takes incoming POST data and converts it to the key/value pairings that can be access in the req.body object
+
+app.use(routes);
 
 app.use(express.static(path.join(__dirname, 'public'))); //joins the value of __dirname, which represents the directory of the file we execute the code in, with the public workspace
 
