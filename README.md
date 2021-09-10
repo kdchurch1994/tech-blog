@@ -18,9 +18,8 @@
   Kyle Church
   
   ## Images
-  ![Alt text](./public/images/Image of dashboard.JPG)
   ![Alt text](./public/images/Image of Login.JPG)
-   ![Alt text](./public/images/Image of Login.JPG)
+  
   
   ## Link to Heroku:  https://tech-blog1994.herokuapp.com/
 
