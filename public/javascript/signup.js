@@ -16,7 +16,7 @@ async function signupformHandler(event) {
             headers: { 'Content-Type': 'application/json'}
         });
         if (response.ok) {
-            console.log('Login Successful!');
+            console.log('Signup Successful!');
 
             document.location.replace('/dashboard');
         } else {
