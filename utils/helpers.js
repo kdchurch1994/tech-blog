@@ -1,4 +1,3 @@
-const { DataTypes } = require("sequelize/types")
 
 module.exports = {
     format_date: date => {
