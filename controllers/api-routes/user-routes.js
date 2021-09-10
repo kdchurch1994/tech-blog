@@ -80,8 +80,18 @@ router.post('/login', (req, res) => {
                 return;
             }
 
-            res.json({ user: dbUserData, message: 'You have now successfully logged in!' });
-        });
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
+
+                res.json({ user: dbUserData, message: "You have successfully logged in." });
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 router.put('/:id', (req, res) => {
