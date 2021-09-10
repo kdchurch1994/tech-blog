@@ -1,4 +1,4 @@
-async function removeFormHandler(event) {
+async function removeFormHandler(event) { //Function that deletes a post based of the post id. The /api/posts/:id delete route is being used to achieve this
     event.preventDefault();
 
     const id = window.location.toString().split('/')[

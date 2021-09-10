@@ -1,6 +1,6 @@
-async function newFormHandler(event) {
-    event.preventDefault();
-
+async function newFormHandler(event) { //function that creates a post by listening the to post-title and content inputs from the associated handlebars html page
+    event.preventDefault(); //This function takes this input and converts it to json and creates the post using the api post route. Once a route is created, the dashboard should appear
+    //This function uses an event listener that creates the post when the submit button is clicked.
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#content').value.trim();
 

@@ -1,4 +1,6 @@
-async function loginformHandler(event) {
+async function loginformHandler(event) { //A function that allows us to login into the website based on the user input for username and password. 
+    //The login is completed using the /api/users/login Post route that was established in the user-routes.js file. 
+    //The event listener is used to allow the user to sign in once they hit enter or hit the submit button
     event.preventDefault();
 
     const username = document.querySelector('#username-login').value.trim();

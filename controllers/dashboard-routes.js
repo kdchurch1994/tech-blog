@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require('express').Router(); //Imports the use of the express Router functionality
+const { Post, User, Comment } = require('../models'); //Imports the use of the User, Post, and Comment models
+const withAuth = require('../utils/auth'); //Allows use to use the withAuth function in the auth file in the utils directory (this ensures that a user as proper authorization to add comments; they must be logged in)
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', withAuth, (req, res) => { //Get route that gets all the posts so that they can be displayed on the dashboard
     Post.findAll({
         where: {
             user_id: req.session.user_id
@@ -38,7 +38,7 @@ router.get('/', withAuth, (req, res) => {
         });
 });
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => { //Route the lets a user edit the posts
     Post.findOne({
         where: {
             id: req.params.id
@@ -73,8 +73,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
         });
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', (req, res) => { //Allows the user to see a new post that is being created
     res.render('new-post');
 });
 
-module.exports = router;
+module.exports = router; //exports the use of the dashbaoard routes

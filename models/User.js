@@ -26,11 +26,11 @@ User.init(
             allowNull: false, //Does not allow null values
             unique: true //The username must be unique
         },
-        email_address: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
+        email_address: { //Creates the email_address column   
+            type: DataTypes.STRING, //Stores the data type as a string
+            allowNull: false, //Does not allow null values
+            unique: true, //The email_address must be unique
+            validate: { //validates whether an actual email address was entered
                 isEmail: true
             }
         },

@@ -1,8 +1,8 @@
-async function editFormHandler(event) {
-    event.preventDefault();
-
-    const title = document.querySelector('input[name="post-title"]').value;
-    const content = document.querySelector('input[name="content"]').value;
+async function editFormHandler(event) { //function that edits a post by listening the to post-title and content inputs from the associated handlebars html page
+    event.preventDefault(); //This is done based off of id, and once the post is updated the dashboard is displayed. The post is edited using a PUT route that was established in the post-routes.js file
+//The post is updated through the use of an event listener that waits until the submit button is selected or the enter key is pressed.
+    const title = document.querySelector('#post-title').value;
+    const content = document.querySelector('#content').value;
 
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1

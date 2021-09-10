@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Comment } = require('../../models');
-const withAuth = require('../../utils/auth')
+const router = require('express').Router(); //Imports the use of the express Router functionality
+const { Comment } = require('../../models'); //Imports the use of the Comment model
+const withAuth = require('../../utils/auth') //Allows use to use the withAuth function in the auth file in the utils directory (this ensures that a user as proper authorization to add comments; they must be logged in)
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { //route to get all comments
     Comment.findAll()
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err => {
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => { //route to get a particular comment based of the comment id
     Comment.findAll({
         where: {
             id: req.params.id
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', withAuth, (req, res) => { //Allows us to add a comment to a post
     if (req.session) {
         Comment.create({
             comment_text: req.body.comment_text,
@@ -39,7 +39,7 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => { //Allows us to update a comment based on the comment id
     Comment.update({
         comment_text: req.body.comment_text
     },
@@ -60,7 +60,7 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', withAuth, (req, res) => { //allows us to delete a comment based of the comment id
     Comment.destroy({
         where: {
             id: req.params.id
@@ -79,4 +79,4 @@ router.delete('/:id', withAuth, (req, res) => {
         });
 });
 
-module.exports = router;
+module.exports = router; //Exports the use of comment-routes

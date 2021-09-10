@@ -1,7 +1,8 @@
 
-const { Post, User, Comment } = require('../models');
-const router = require('express').Router();
-router.get('/', (req, res) => {
+const router = require('express').Router(); //Imports the use of the express Router functionality
+const { Post, User, Comment } = require('../models'); //Imports the use of the User, Post, and Comment models
+
+router.get('/', (req, res) => { //Retires all posts to be displayed on the home page 
     Post.findAll({
         attributes: [
             'id',
@@ -35,7 +36,7 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/post/:id', (req, res) => {
+router.get('/post/:id', (req, res) => { //Gets a single post by the ID
     Post.findOne({
         where: {
             id: req.params.id
@@ -76,7 +77,7 @@ router.get('/post/:id', (req, res) => {
         });
 });
 
-router.get('/posts-comments', (req, res) => {
+router.get('/posts-comments', (req, res) => { //Retrieves a comment from a Post
     Post.findOne({
         where: {
             id: req.params.id
@@ -117,13 +118,13 @@ router.get('/posts-comments', (req, res) => {
         });
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", (req, res) => { //renders the login page
     console.log("Is logged in?", req.session.loggedIn );
     res.render("login", { loggedIn: req.session.loggedIn });
 });
 
-router.get("/signup", (req, res) => {
+router.get("/signup", (req, res) => { //renders the signup page
     res.render("signup");
 });
 
-module.exports = router;
+module.exports = router; //exports the use of the home-routes

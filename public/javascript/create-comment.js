@@ -1,7 +1,7 @@
-async function commentFormHandler(event) {
-    event.preventDefault();
+async function commentFormHandler(event) { //function that use a query selector to take the input for a comment_text and post it to the database using the /api/comments post route
+    event.preventDefault(); //the comment is created one the button being used to submit the comment is clicked
 
-    const comment_text = document.querySelector('input[name="comment-body]').value.trim();
+    const comment_text = document.querySelector('#comment-body').value.trim();
 
     const post_id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1

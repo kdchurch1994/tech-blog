@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const router = require('express').Router(); //Imports the use of the express Router functionality
+const { Post, User, Comment } = require('../../models'); //Imports the use of the Comment, Post, and User models
+const withAuth = require('../../utils/auth'); ////Allows use to use the withAuth function in the auth file in the utils directory (this ensures that a user as proper authorization to add comments; they must be logged in)
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { //GET route to retrieve all posts
     Post.findAll({
         attributes: [
             'id',
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
             'content',
             'created_at'
         ],
-        order: [['created_at', 'DESC']],
+        order: [['created_at', 'DESC']], //Displays posts in descending order
         include: [
             {
                 model: Comment,
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => { //Gets a single post based of the post's id
     Post.findOne({
         where: {
             id: req.params.id
@@ -72,7 +72,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', withAuth, (req, res) => { //allows the user to create a post once they login
     Post.create({
         title: req.body.title,
         content: req.body.content,
@@ -85,7 +85,7 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => { //allows the user to update a post based on the post's id
     Post.update(
         {
             title: req.body.title,
@@ -110,7 +110,7 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', withAuth, (req, res) => { //alows us to delete a post based off its id
     Post.destroy({
         where: {
             id: req.params.id
@@ -129,5 +129,5 @@ router.delete('/:id', withAuth, (req, res) => {
         });
 });
 
-module.exports = router;
+module.exports = router; //exports the user of the post-routes
 

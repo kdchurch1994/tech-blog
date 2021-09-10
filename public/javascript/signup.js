@@ -1,5 +1,5 @@
-async function signupformHandler(event) {
-    event.preventDefault();
+async function signupformHandler(event) { //A function that listens to the input from the signup.handlebars html page 
+    event.preventDefault(); //the api/users post route is being used to add the user to the database. If the signup is sucessful, the dashboard should be displayed
 
     const email_address = document.querySelector('#email-signup').value.trim();
     const username = document.querySelector('#username-signup').value.trim();
