@@ -20,6 +20,11 @@
   ## Images
   ![Alt text](./public/images/Image_of_Login.JPG)
   
+  ![Alt text](./public/images/Image_of_Signup_page.JPG)
+  
+  ![Alt text](./public/images/Image_of_dashboard.JPG)
+  
+  
   
   ## Link to Heroku:  https://tech-blog1994.herokuapp.com/
 
