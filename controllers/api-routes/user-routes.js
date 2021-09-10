@@ -84,6 +84,19 @@ router.post('/login', (req, res) => {
         });
 });
 
+router.post('/signup', (req, res) => {
+    User.create({
+        username: req.body.username,
+        email_address: req.body.email_address,
+        password: req.body.password
+    })
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 router.put('/:id', (req, res) => {
     User.update(req.body, {
         individualHooks: true,
