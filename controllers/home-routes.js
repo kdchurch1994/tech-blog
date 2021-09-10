@@ -117,4 +117,9 @@ router.get('/posts-comments', (req, res) => {
         });
 });
 
+router.get("/login", (req, res) => {
+    console.log("Is logged in?", req.session.loggedIn );
+    res.render("login", { loggedIn: req.session.loggedIn });
+});
+
 module.exports = router;
