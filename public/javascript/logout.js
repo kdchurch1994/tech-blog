@@ -1,6 +1,5 @@
-const { response } = require("express");
-
-async function logout() {
+async function logout(event) {
+    event.preventDefault();
     const reponse = await fetch('/api/users/logout', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' }
